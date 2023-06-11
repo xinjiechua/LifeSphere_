@@ -12,7 +12,7 @@ def load_model(model_path):
     return model
 
 def create_app():
-    app.config['ENV'] = 'development'
+    app.config['ENV'] = 'production'
     # Load ML models
     model1 = load_model('model/modelM.pkl')
     model2 = load_model('model/modelF.pkl')
