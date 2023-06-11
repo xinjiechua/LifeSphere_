@@ -8,21 +8,43 @@
     .container {
         display: flex;
         justify-content: center;
-        align-items: center;
+        margin-left: 25px;
         height: 55vh;
+    }
 
+    .row {
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .box {
-        width: 300px;
-        height:230px;
+        flex: 1 1 300px;
         padding: 10px;
         border: 2px solid #78f9f9;
         border-radius: 10px;
         margin: 10px;
         text-align: center;
+        overflow: auto;
     }
 
+
+    /* Customize the scrollbar */
+    .box::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .box::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    .box::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    
+    .box::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    
 </style>{% endblock stylesheets %}
 
 {% block content %}
@@ -57,7 +79,7 @@
                 <div class="box">
                     <h3 style="font-size: 20px; margin-bottom: 20px;">User-Friendly Interface</h3>
                     <p style="text-align:justify;">Our website features a user-friendly interface that makes it easy for
-                        expecting mothers and healthcare professionals to access and interpret the prediction outcomes.
+                        expecting mothers, healthcare professionals and other users to access and interpret the prediction outcomes.
                         The interface provides a seamless user experience.</p>
                 </div>
                 <div class="box">
