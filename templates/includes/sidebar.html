@@ -1,0 +1,32 @@
+<div class="sidebar">
+    
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="{% if 'index' in segment %} active {% endif %} ">
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                    <p style="font-size: 20px;">Home</p>
+                </a>
+            </li>
+            <li class="{% if 'icons' in segment %} active {% endif %}">
+                <a class="nav-link" data-toggle="collapse" href="#pred" aria-expanded="false" aria-controls="pred">
+                    <i class="fa fa-stethoscope"></i>
+                    <p style="display: inline-block; font-size: 20px;">Prediction</p>
+                    <i class="fas fa-angle-down" style="float: right;"></i>
+                </a>
+                <div class="collapse" id="pred">
+                    <ul class="nav flex-column sub-menu" style="margin-left: 8px;">
+                        <li class="nav-item"> <a class="nav-link" href="/predictM">Maternal Health Risk</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/predictF">Fetal Health Risk</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="{% if 'typography' in segment %} active {% endif %}">
+                <a href="/resource">
+                    <i class="tim-icons icon-align-center"></i>
+                    <p style="font-size: 20px;">Resources</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
