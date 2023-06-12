@@ -18,8 +18,8 @@ def create_app():
     model2 = load_model('model/modelF.pkl')
   
     # Load the scaler used for scaling the training data
-    scaler1 = pickle.load(open('scalerM.pkl', 'rb'))
-    scaler2 = pickle.load(open('scalerF.pkl', 'rb'))
+    scaler1 = pickle.load(open('model/scalerM.pkl', 'rb'))
+    scaler2 = pickle.load(open('model/scalerF.pkl', 'rb'))
 
     # Add the loaded models and scaler to the app context
     app.config['MODEL1'] = model1
