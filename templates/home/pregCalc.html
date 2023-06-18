@@ -1,0 +1,518 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Pregnancy Calculator {% endblock %}
+
+{% block stylesheets %}
+<style>
+    .tbox {
+        width: 37% !important;
+        text-align: center;
+    }
+
+    .box {
+        border: 2px solid #78f9f9;
+        border-radius: 10px;
+        flex: 1 1 300px;
+        padding: 20px;
+    }
+
+    .output {
+        width: 280px !important;
+        text-align: center;
+    }
+
+    .frms {
+        line-height: 1.2em;
+        margin: 0 auto;
+        padding: 10px;
+        width: 65%;
+    }
+
+    .frms input[type="text"],
+    [type="password"],
+    [type="file"],
+    textarea,
+    select {
+        background: none repeat scroll 0 0 #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        height: 35px;
+        width: 200px;
+        margin-bottom: 15px;
+        margin-top: 5px;
+        padding: 0 0.5%;
+    }
+
+    .frms input[type="submit"],
+    input[type="reset"],
+    input[type="button"],
+    button,
+    .yellow_button,
+    .blue_button {
+        border: medium none;
+        border-radius: 0.3em;
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 10px 0;
+        padding: 7px 14px;
+    }
+
+    .frms input[type="reset"] {
+        background: none repeat scroll 0 0 #ee765d;
+        border-bottom: 3px solid #d95e44;
+        text-shadow: 1px 1px 0 #8c3736;
+    }
+
+    input[type="button"],
+    button,
+    .blue_button {
+        background: none repeat scroll 0 0 #468cd2;
+        border-bottom: 3px solid #3277bc;
+        text-shadow: 1px 1px 0 #214d73;
+    }
+
+    .new {
+        padding: 8px;
+    }
+
+
+    .tri_word {
+        font-style: italic;
+        font-size: 27px;
+        margin-top: 12px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .divider.gray {
+        border-bottom: 5px dotted #636363;
+    }
+
+    .info{
+        padding-left: 18px;
+    }
+
+    .tri_milestones {
+        color: #f3c9c9;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    .elementor *,
+    .elementor :after,
+    .elementor :before {
+        box-sizing: border-box;
+    }
+
+    .divider {
+        width: 90%;
+        border-bottom: 5px dotted #608ea8;
+        height: 1px;
+        margin: 30px auto;
+    }
+
+    .divider.short {
+        width: 50%;
+    }
+
+    .icon,
+    .ms_full {
+        padding-top: 10px;
+        padding-left: 5px;
+        display: grid;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 10px 10px 0 0;
+        float: left;
+    }
+
+    .milestone {
+        color: #f69684;
+        font-family: sofia, cursive;
+    }
+
+    .mis {
+        background-image: url(//americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/graph-down.png);
+    }
+
+    .gender {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/mf.png);
+    }
+
+    .premature {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/check-mark.png);
+    }
+
+    .conceive {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/spermegg.png);
+    }
+
+    .heart-belly {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/heart-belly.png);
+        background-size: contain;
+    }
+
+    .preg-test {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/preg-test.png);
+    }
+
+    .heartbeat {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/heartbeat.png);
+    }
+
+    .talk {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/fetus.png);
+    }
+
+    .breathe {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/lungs.png);
+    }
+
+    .immune {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/immune.png);
+    }
+
+    .full {
+        background-image: url(https://americanpregnancy.org/wp-content/plugins/apa-pregnancy-calculator/fullterm.png);
+    }
+
+    .clearfix {
+        clear: both;
+        margin-bottom: 15px;
+    }
+
+    .pink {
+        color: #f69684;
+    }
+
+    .trimester_num {
+        font-size: 40px;
+        width: 100px;
+        height: 100px;
+        border: 4px solid #d96b88;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+        line-height: 92px;
+        text-align: center;
+    }
+
+    @media only screen and (max-width:480px) {
+        .frms {
+            width: 95% !important;
+        }
+
+        .tbox {
+            width: 95% !Important;
+        }
+
+        .frms input[type="text"],
+        [type="password"],
+        [type="file"],
+        textarea,
+        select {
+            width: 95% !important;
+        }
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title" style="text-align: center;">Pregnancy Calculator</h2>
+                </div>
+                <div class="card-body">
+                    <form id='tab' name=first class='frms'>
+                        <div class='box'>
+                            <table style="margin: 0 auto;">
+                                <h4 style="font-size: 1.2rem; text-align: center;">Date of Last Menstrual Period</h4>
+                                <tr>
+                                    <td class="lbl"><label style="font-size: 20px; ">Date</label></td>
+                                    <td style="padding-left: 30px;">
+                                        <select name=len11>
+                                            <option name=1 value=1>1</option>
+                                            <option name=2 value=2>2</option>
+                                            <option name=3 value=3>3</option>
+                                            <option name=4 value=4>4</option>
+                                            <option name=5 value=5>5</option>
+                                            <option name=6 value=6>6</option>
+                                            <option name=7 value=7>7</option>
+                                            <option name=8 value=8>8</option>
+                                            <option name=9 value=9>9</option>
+                                            <option name=10 value=10>10</option>
+                                            <option name=11 value=11>11</option>
+                                            <option name=12 value=12>12</option>
+                                            <option name=13 value=13>13</option>
+                                            <option name=14 value=14>14</option>
+                                            <option name=15 value=15>15</option>
+                                            <option name=16 value=16>16</option>
+                                            <option name=17 value=17>17</option>
+                                            <option name=18 value=18>18</option>
+                                            <option name=19 value=19>19</option>
+                                            <option name=20 value=20>20</option>
+                                            <option name=21 value=21>21</option>
+                                            <option name=22 value=22>22</option>
+                                            <option name=23 value=23>23</option>
+                                            <option name=24 value=24>24</option>
+                                            <option name=25 value=25>25</option>
+                                            <option name=26 value=26>26</option>
+                                            <option name=27 value=27>27</option>
+                                            <option name=28 value=28>28</option>
+                                            <option name=29 value=29>29</option>
+                                            <option name=30 value=30>30</option>
+                                            <option name=31 value=31>31</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl"><label class='leftt' style=" font-size: 20px;">Month</label></td>
+                                    <td style="padding-left: 30px;">
+                                        <select name=len12>
+                                            <option name=1 value=1>1</option>
+                                            <option name=2 value=2>2</option>
+                                            <option name=3 value=3>3</option>
+                                            <option name=4 value=4>4</option>
+                                            <option name=5 value=5>5</option>
+                                            <option name=6 value=6>6</option>
+                                            <option name=7 value=7>7</option>
+                                            <option name=8 value=8>8</option>
+                                            <option name=9 value=9>9</option>
+                                            <option name=10 value=10>10</option>
+                                            <option name=11 value=11>11</option>
+                                            <option name=12 value=12>12</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl"><label class='leftt' style="font-size: 20px;">Year</label></td>
+                                    <td style="padding-left: 30px; text-align: center;"> <input name=len13 type=text
+                                            onkeypress="return isNumber(event)" maxlength='4'>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div align='center'><input type=button name=cc value=Calculate onClick="calc()">
+                                <input type="reset" value="Reset">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="content" style="text-align: center;">
+                            <h4 style="font-size: 1.2rem; text-align: center;">Due Date & Conception Date Calculation
+                                Results:</h4>
+                            <label class='leftt' style="font-size: 17px;">Estimated Fertility Dates :</label><br>
+                            <span><input type=text readonly class='tbox' name=fd1></span>
+                            <span class='new'>
+                                to
+                            </span>
+                            <span><input type=text readonly class='tbox' name=fd2> </span>
+                            <div> <label class='leftt' style="font-size: 17px;">Estimated Conception Date :</label>
+                                <div><input type=text readonly class='output' name=cd></div>
+                            </div>
+                            <div> <label class='leftt' style="font-size: 17px;">First Trimester Ends(12 Weeks) :</label>
+                                <div><input type=text readonly class='output' name=fte></div>
+                            </div>
+                            <div> <label class='leftt' style="font-size: 17px;">Second Trimester Ends(27 Weeks):</label>
+                                <input type=text readonly class='output' name=ste>
+                            </div>
+                            <div> <label class='leftt' style="font-size: 17px;">Estimated Due Date(40 Weeks) :</label>
+                                <input type=text readonly class='output' name=dd>
+                            </div>
+                            <script type="text/javascript"></script>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 offset-md-1">
+            <div class="card card-plain">
+                <div class="card-header">
+                    <h2 class="card-title" style="text-align: center;">Pregnancy Milestones</h2>
+                </div>
+                <div class="card-body">
+                    <div class="divider short"></div>
+                    <div class="first">
+                        <div class="trimester_num pink">1st</div>
+                        <div class="pink ubuntu tri_word" style="text-align: center; font-size: 20px;">Trimester</div>
+                        <p class="tri_text" style="text-align: justify;">After fertilization and implantation, your baby
+                            is just an embryo, that is a
+                            set of cells from which all organs and body parts will develop. It will be exciting to see
+                            how fast your baby grows. From this minuscule starting point, all the organs and body parts
+                            begin their intricate formation. It's a time of anticipation, wonder, and eager anticipation
+                            of the journey ahead, as you nurture and support the incredible transformation happening
+                            within you.</p>
+                        
+                        <div class="tri_milestones">Milestones</div>
+                        <div class="info">
+                        <div class="icon conceive"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Weeks 1&2</span>
+                            </div>
+                            <div class="darkgray milestone">Baby Conceived</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon heart-belly"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 3</span>
+                            </div>
+                            <div class="darkgray milestone">Implantation occurs</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon preg-test"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 4</span>
+                            </div>
+                            <div class="darkgray milestone">Positive Pregnancy Test</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon heartbeat"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 6</span>
+                            </div>
+                            <div class="darkgray milestone">Heartbeat detectable by ultrasound</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                    <div class="divider gray"></div>
+                    <div class="second">
+                        <div class="trimester_num pink">2nd</div>
+                        <div class="pink ubuntu tri_word" style="text-align: center; font-size: 20px;">Trimester</div>
+                        <p class="tri_text" style="text-align: justify;">At the beginning of the second trimester, your
+                            baby is about 3 1/2 inches
+                            long and weigh about 1 1/2 ounces. Tiny, unique fingerprints are now in place, and the heart
+                            pumps 25 quarts of blood a day. As the weeks go by, your baby's skeleton starts to harden
+                            from rubbery cartilage to bone, and he or she develops the ability to hear. You're likely to
+                            feel kicks and flutters soon if you haven't already.</p>
+                       
+                        <div class="tri_milestones">Milestones</div>
+                        <div class="info">
+                        <div class="icon mis"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 13</span>
+                            </div>
+                            <div class="darkgray milestone">Miscarrige risk decreases</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon gender"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 18</span>
+                            </div>
+                            <div class="darkgray milestone">Gender reveal time</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon premature"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 23</span>
+                            </div>
+                            <div class="darkgray milestone">Premature baby may survive</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                    <div class="divider gray"></div>
+                    <div class="third">
+                        <div class="trimester_num pink">3rd</div>
+                        <div class="pink ubuntu tri_word" style="text-align: center; font-size: 20px;">Trimester</div>
+                        <p class="tri_text" style="text-align: justify;">As this trimester progresses, your little one
+                            reaches around 14-1/2 inches in length and weighs approximately 2 pounds. Throughout these
+                            final weeks before birth, your baby's organs and body systems refine and mature, ensuring
+                            they are ready for life outside the womb. With each passing day, you may feel the joy of
+                            your baby's active movements, as they stretch and kick inside you. The anticipation and
+                            excitement build as the third trimester progresses, bringing you closer to the moment when
+                            you will finally hold your precious bundle of joy in your arms.</p>
+                       
+                        <div class="tri_milestones">Milestones</div>
+                        <div class="info">
+                        <div class="icon talk"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 27</span>
+                            </div>
+                            <div class="darkgray milestone">Start talking to your baby</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon breathe"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 29</span>
+                            </div>
+                            <div class="darkgray milestone">Baby can breathe</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon immune"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 33</span>
+                            </div>
+                            <div class="darkgray milestone">Immune system is maturing</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="icon full"></div>
+                        <div class="ms_full">
+                            <div class="ms_weeks purple"><span class="pink">Week 37</span>
+                            </div>
+                            <div class="darkgray milestone">Baby is considered full term</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    function calc() {
+        var day = document.first.len11.value;
+        var mon = document.first.len12.value;
+        var year = document.first.len13.value;
+        var ylen = year.length;
+        var d = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+        var m = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER",
+            "DECEMBER"];
+        var curd = new Date(year, mon - 1, day);
+        var res2 = curd.getMonth();
+        var res = new Date();
+        var diff =
+            Date.UTC(res.getFullYear(), res.getMonth() - 1, res.getDay(), 0, 0, 0)
+            - Date.UTC(curd.getFullYear(), curd.getMonth() - 1, curd.getDay(), 0, 0, 0);
+        var secleft = diff / 1000 / 60;
+        var hrsleft = secleft / 60;
+        var daysleft = hrsleft / 24;
+        //if(res2 == (mon-1) && daysleft < 300 && year!="")
+        if (year != "" && ylen > 3) {
+            var fd1 = new Date(year, mon - 1, parseInt(day) + 10);
+            document.first.fd1.value = d[fd1.getDay()] + ", " + m[fd1.getMonth()] + " " + fd1.getDate() + ", " + fd1.getFullYear();
+            var fd2 = new Date(year, mon - 1, parseInt(day) + 20);
+            document.first.fd2.value = d[fd2.getDay()] + ", " + m[fd2.getMonth()] + " " + fd2.getDate() + ", " + fd2.getFullYear();
+            var cd = new Date(year, mon - 1, parseInt(day) + 14);
+            document.first.cd.value = d[cd.getDay()] + ", " + m[cd.getMonth()] + " " + cd.getDate() + ", " + cd.getFullYear();
+            var fte = new Date(year, mon - 1, parseInt(day) + 84);
+            document.first.fte.value = d[fte.getDay()] + ", " + m[fte.getMonth()] + " " + fte.getDate() + ", " + fte.getFullYear();
+            var ste = new Date(year, mon - 1, parseInt(day) + 189);
+            document.first.ste.value = d[ste.getDay()] + ", " + m[ste.getMonth()] + " " + ste.getDate() + ", " + ste.getFullYear();
+            var dd = new Date(year, mon - 1, parseInt(day) + 280);
+            document.first.dd.value = d[dd.getDay()] + ", " + m[dd.getMonth()] + " " + dd.getDate() + ", " + dd.getFullYear();
+        }
+        else {
+            alert("Invalid Date");
+        }
+    }
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event; var charCode = (evt.which) ? evt.which : evt.keyCode; if (charCode > 31 && (charCode < 48 || charCode > 57)) { return false; } return true;
+    }
+</script>
+{% endblock javascripts %}

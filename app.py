@@ -61,6 +61,13 @@ def predictM():
 def resource():
     return render_template('home/resource.html')
 
+@app.route('/calc')
+def calc():
+    return render_template('home/pregCalc.html')
+
+@app.route('/help')
+def help():
+    return render_template('home/helpline.html')
 
 
 

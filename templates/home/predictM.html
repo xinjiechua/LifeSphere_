@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     <br>
-                    <h1 class="card-title">Maternal Health Risk Prediction</h1>
+                    <h2 class="card-title">Maternal Health Risk Prediction</h2>
                 </div>
                 <div class="card-body">
                     <h4 style="background-color: transparent;">Please enter the following health parameters for risk
@@ -74,15 +74,27 @@
     <div class="content" style="margin-left: 130px;margin-right:130px;text-align: center;">
         <br>
         {% if result_data %}
-        <h1>Result: </h1>
-        <h4 style="font-size: 1.2rem">The estimated maternal health condition is assessed as:</h4>
+        <h1  style="font-family: inherit;">Result: </h1>
+        <h4 style="font-size: 1.2rem;">The estimated maternal health condition is assessed as:</h4>
         {% if result_data['prediction'] == 'High Risk' %}
         <h2 style="color: red;">{{ result_data['prediction'] }}</h2>
         <h4 style="text-align: justify;">You have a high likelihood of facing health complications during your
             pregnancy. It is crucial to seek
             specialized medical care and closely follow the guidance of your healthcare provider. They will provide you
             with personalized care plans to manage and mitigate potential risks.</h4>
-
+        <br>
+        <h3 style="color: #f3c9c9;"> Some Recommendations</h3>
+        <h4 style="text-align: justify; font-size: 0.9rem;">
+            <ul style="padding-inline-start: 15px;">
+              <li><strong>Consult with a healthcare professional</strong>: Schedule an immediate appointment with your healthcare provider or a specialized obstetrician/gynecologist who has experience in managing high-risk pregnancies. They will conduct a thorough assessment of your specific situation, provide detailed insights, and create a personalized care plan to ensure the best possible outcome for you and your baby.</li>
+              <br>
+              <li><strong>Follow recommended prenatal care guidelines</strong>: Strictly follow the recommended prenatal care guidelines provided by your healthcare provider. Attend all scheduled check-ups, screenings, and tests to closely monitor your health and the well-being of your baby. Regular prenatal care is essential for early detection of any potential complications and for timely interventions.</li>
+              <br>
+              <li><strong>Seek specialized medical care</strong>: Based on your specific risk factors, your healthcare provider may advise additional consultations with specialists such as maternal-fetal medicine specialists, nutritionists, or genetic counselors. These experts can provide specialized guidance and support tailored to your unique needs, ensuring comprehensive care throughout your pregnancy.</li>
+              <br>
+              <li><strong>Monitor your symptoms</strong>: Pay close attention to any changes in your symptoms or overall health. High-risk pregnancies may be associated with certain warning signs or symptoms that require immediate attention. If you experience new or worsening symptoms, such as severe abdominal pain, excessive swelling, vaginal bleeding, or reduced fetal movement, inform your healthcare provider promptly. Do not hesitate to seek medical assistance.</li>
+            </ul>
+        </h4>
         {% elif result_data['prediction'] == 'Mid Risk' %}
         <h2 style="color: yellow;">{{ result_data['prediction'] }}</h2>
         <h4 style="text-align: justify;">You may have a moderate likelihood of experiencing certain health challenges
