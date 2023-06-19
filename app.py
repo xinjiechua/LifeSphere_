@@ -55,6 +55,13 @@ def predictF():
 def predictM():
     return render_template('home/predictM.html')
 
+@app.route('/predictGD')
+def predictGD():
+    return render_template('home/diabetes.html')
+
+@app.route('/predictMOD')
+def predictMOD():
+    return render_template('home/MOD.html')
 
 
 @app.route('/resource')
