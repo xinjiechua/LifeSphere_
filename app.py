@@ -16,16 +16,20 @@ def create_app():
     # Load ML models
     model1 = load_model('model/modelM.pkl')
     model2 = load_model('model/modelF.pkl')
+    model3 = load_model('model/modelD.pkl')
   
     # Load the scaler used for scaling the training data
     scaler1 = pickle.load(open('model/scalerM.pkl', 'rb'))
     scaler2 = pickle.load(open('model/scalerF.pkl', 'rb'))
+    scaler3 = pickle.load(open('model/scalerD.pkl', 'rb'))
 
     # Add the loaded models and scaler to the app context
     app.config['MODEL1'] = model1
     app.config['MODEL2'] = model2
+    app.config['MODEL3'] = model3
     app.config['SCALER1'] = scaler1
     app.config['SCALER2'] = scaler2
+    app.config['SCALER3'] = scaler3
 
     return app
 # Helper - Extract current page name from request
@@ -55,14 +59,9 @@ def predictF():
 def predictM():
     return render_template('home/predictM.html')
 
-@app.route('/predictGD')
-def predictGD():
+@app.route('/predictD')
+def predictD():
     return render_template('home/diabetes.html')
-
-@app.route('/predictMOD')
-def predictMOD():
-    return render_template('home/MOD.html')
-
 
 @app.route('/resource')
 def resource():
@@ -204,6 +203,66 @@ def predict_model2():
     except Exception as e:
         error_message = f"An error occurred during prediction: {str(e)}"
         return render_template('home/page-400.html', error=error_message)
+
+
+
+@app.route('/model3/predict', methods=['POST'])
+def predict_model3():
+
+    try:
+        age = float(request.form['age'])
+        ethnic = int(request.form['ethnic'])
+        previous = int(request.form['previous'])
+        dbp = float(request.form['DBP'])
+        sbp = float(request.form['SBP'])
+        fat = float(request.form['fat'])
+        currAge = float(request.form['currAge'])
+        pregnancies = float(request.form['pregnancies'])
+        glucose = float(request.form['glucose'])
+        bmi = float(request.form['BMI'])
+        birth = float(request.form['birth'])
+        dtype = int(request.form['dtype'])
+        weight = float(request.form['weight'])
+        
+        input_data = [[age,ethnic,previous,dbp,sbp,fat, currAge,pregnancies,glucose, bmi, birth, dtype, weight]]
+        
+        scaler3 = app.config['SCALER3'] 
+        scaled_data = scaler3.transform(input_data)
+        
+        # Perform prediction using the loaded ML model for Model 2
+        model3 = app.config['MODEL3']
+        prediction = int(model3.predict(scaled_data))
+
+        # Map the prediction to a meaningful label
+        pred_mapper = {0: 'Low Risk', 1: 'High Risk'}
+        final_pred = pred_mapper.get(prediction, 'Unknown')
+
+        # Prepare the data to pass to the result page for Model 2
+        result_data = {
+            'prediction': final_pred,
+            'input_data': {
+                'Age': age,
+                'Ethnicity': ethnic,
+                'Previous Diabetes Mellitus': previous,
+                'Diastolic Blood Pressures': dbp,
+                'Systolic Blood Pressure': sbp,
+                'Central Armellini Fat (mm)': fat,
+                'Current Gestational Age': currAge,
+                'Pregancies(number)': pregnancies,
+                'First Fasting Glucose (mg/dl)': glucose,
+                'BMI Pregestational (kg/m)': bmi,
+                'Gestational Age at Birth (week,day)': birth,
+                'Type of Delivery': dtype,
+                'Chlid Birth Weight(g)': weight
+            }
+        }
+
+        return render_template('home/diabetes.html', result_data=result_data)
+    except Exception as e:
+        error_message = f"An error occurred during prediction: {str(e)}"
+        return render_template('home/page-400.html', error=error_message)
+
+
 
 
 if __name__ == "__main__":

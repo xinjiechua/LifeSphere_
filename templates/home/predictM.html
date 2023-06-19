@@ -86,21 +86,27 @@
         <h3 style="color: #f3c9c9;"> Some Recommendations</h3>
         <h4 style="text-align: justify; font-size: 0.9rem;">
             <ul style="padding-inline-start: 15px;">
-              <li><strong>Consult with a healthcare professional</strong>: Schedule an immediate appointment with your healthcare provider or a specialized obstetrician/gynecologist who has experience in managing high-risk pregnancies. They will conduct a thorough assessment of your specific situation, provide detailed insights, and create a personalized care plan to ensure the best possible outcome for you and your baby.</li>
-              <br>
-              <li><strong>Follow recommended prenatal care guidelines</strong>: Strictly follow the recommended prenatal care guidelines provided by your healthcare provider. Attend all scheduled check-ups, screenings, and tests to closely monitor your health and the well-being of your baby. Regular prenatal care is essential for early detection of any potential complications and for timely interventions.</li>
-              <br>
-              <li><strong>Seek specialized medical care</strong>: Based on your specific risk factors, your healthcare provider may advise additional consultations with specialists such as maternal-fetal medicine specialists, nutritionists, or genetic counselors. These experts can provide specialized guidance and support tailored to your unique needs, ensuring comprehensive care throughout your pregnancy.</li>
-              <br>
+              <li><strong>Consult with a healthcare professional</strong>: Schedule an immediate appointment with your healthcare provider or a specialized obstetrician/gynecologist who has experience in managing high-risk pregnancies. They will conduct a thorough assessment of your specific situation, provide detailed insights, and create a personalized care plan to ensure the best possible outcome for you and your baby.</li><br>
+              <li><strong>Follow recommended prenatal care guidelines</strong>: Strictly follow the recommended prenatal care guidelines provided by your healthcare provider. Attend all scheduled check-ups, screenings, and tests to closely monitor your health and the well-being of your baby. Regular prenatal care is essential for early detection of any potential complications and for timely interventions.</li><br>
+              <li><strong>Seek specialized medical care</strong>: Based on your specific risk factors, your healthcare provider may advise additional consultations with specialists such as maternal-fetal medicine specialists, nutritionists, or genetic counselors. These experts can provide specialized guidance and support tailored to your unique needs, ensuring comprehensive care throughout your pregnancy.</li><br>
               <li><strong>Monitor your symptoms</strong>: Pay close attention to any changes in your symptoms or overall health. High-risk pregnancies may be associated with certain warning signs or symptoms that require immediate attention. If you experience new or worsening symptoms, such as severe abdominal pain, excessive swelling, vaginal bleeding, or reduced fetal movement, inform your healthcare provider promptly. Do not hesitate to seek medical assistance.</li>
             </ul>
         </h4>
         {% elif result_data['prediction'] == 'Mid Risk' %}
         <h2 style="color: yellow;">{{ result_data['prediction'] }}</h2>
         <h4 style="text-align: justify;">You may have a moderate likelihood of experiencing certain health challenges
-            during your pregnancy.It is
-            crucial to prioritize your prenatal care and closely follow the guidance provided by your healthcare
+            during your pregnancy.It is crucial to prioritize your prenatal care and closely follow the guidance provided by your healthcare
             provider. Regular check-ups and monitoring can help detect and address any potential issues early on.
+        </h4>
+        <br>    
+        <h3 style="color: #f9f5c9;"> Some Recommendations</h3>
+        <h4 style="text-align: justify; font-size: 0.9rem;">
+            <ul style="padding-inline-start: 15px;">
+                <li><strong>Attend regular prenatal check-ups</strong>: Ensure you attend all scheduled prenatal check-ups with your healthcare provider. These check-ups will help monitor your health and the development of your baby. Your healthcare provider will be able to identify any potential issues or complications and provide appropriate guidance.</li><br>
+                <li><strong>Be aware of your health</strong>: Pay attention to your body and be aware of any changes or symptoms that may arise. If you notice anything unusual or concerning, promptly inform your healthcare provider. Being proactive and vigilant about your health can help in early detection and timely management of potential complications.</li><br>
+                <li><strong>Follow a balanced and nutritious diet</strong>: It is important to maintain a healthy diet during pregnancy. Eat a variety of nutrient-rich foods to support your overall health and the growth of your baby. Consult with a nutritionist or your healthcare provider for personalized dietary recommendations.</li><br>
+                <li><strong>Manage stress and prioritize self-care</strong>: Pregnancy can be a physically and emotionally challenging time. Take steps to manage stress and prioritize self-care. Engage in relaxation techniques, such as deep breathing exercises or prenatal yoga. Seek support from loved ones and consider joining prenatal support groups.</li><br>
+            </ul>
         </h4>
         {% elif result_data['prediction'] == 'Low Risk' %}
         <h2 style="color: rgb(64, 221, 64);">{{ result_data['prediction'] }}</h2>
