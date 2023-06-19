@@ -21,100 +21,41 @@
                     <br>
                     <form action="/model3/predict" method="POST">
                         <div class="frm">
-                            <table>
+                            <table>        
                                 <tr>
-                                    <td class="lbl"><label for="age" style="font-size: 20px;">Age</label></td>
-                                    <td><input type="text" id="age" name="age" placeholder=" Between [0-90]"
-                                            style="width: 200px;font-size: 15px;">
+                                    <td class="lbl"><label for="weight" style="font-size: 18px;">Chlid Birth Weight(g)</label>
                                     </td>
+                                    <td><input type="text" id="weight" name="weight"
+                                            placeholder=" Between [1000.0-4700.0]"
+                                            style="width: 200px;font-size: 15px;"></td>
                                 </tr>
                                 <tr>
-                                    <td class="lbl"><label for="ethnic" style="font-size: 20px;">Ethnicity</label></td>
-                                    <td><select id="ethnic" name="ethnic" style="font-size: 15px;">
-                                        <option value="0">White</option>
-                                        <option value="1">Not White</option>
-                                    </select></td>
+                                    <td class="lbl"><label for="BMI" style="font-size: 18px; margin-right: 30px;">BMI
+                                            Pregestational (kg/m)</label></td>
+                                    <td><input type="text" id="BMI" name="BMI" placeholder=" Between [13.0-57.0]"
+                                            style="width: 200px;font-size: 15px;"></td>
                                 </tr>
                                 <tr>
-                                    <td class="lbl"><label for="previous" style="font-size: 20px;">Previous Diabetes
-                                            Mellitus</label></td>
-                                    <td><select id="previous" name="previous" style="font-size: 15px;">
-                                            <option value="0">No</option>
-                                            <option value="1">Yes</option>
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="DBP" style="font-size: 20px;">Diastolic Blood
-                                            Pressure</label></td>
-                                    <td><input type="text" id="DBP" name="DBP" placeholder=" Between [45.0-110.0]"
-                                            style="width: 200px;font-size: 15px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="SBP" style="font-size: 20px;">Systolic Blood
-                                            Pressure</label></td>
-                                    <td><input type="text" id="SBP" name="SBP" placeholder=" Between [85.0-170.0]"
-                                            style="width: 200px;font-size: 15px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="fat" style="font-size: 20px;">Central Armellini Fat (mm)
-                                        </label></td>
-                                    <td><input type="text" id="fat" name="fat" placeholder=" Between [10.0-100.0]"
-                                            style="width: 200px;font-size: 15px;">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="currAge" style="font-size: 20px;">Current Gestational
-                                            Age</label></td>
-                                    <td><input type="text" id="currAge" name="currAge"
-                                            placeholder=" Between [5-32,0-6] " style="width: 200px;font-size: 15px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="pregnancies"
-                                            style="font-size: 20px;">Pregancies(number)</label></td>
-                                    <td><input type="text" id="pregnancies" name="pregnancies"
-                                            placeholder=" Between [1-10]" style="width: 200px;font-size: 15px;">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="glucose" style="font-size: 20px;">First Fasting Glucose
+                                    <td class="lbl"><label for="glucose" style="font-size: 18px;">First Fasting Glucose
                                             (mg/dl)</label></td>
                                     <td><input type="text" id="glucose" name="glucose"
                                             placeholder=" Between [50.0-120.0]" style="width: 200px;font-size: 15px;">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="lbl"><label for="BMI" style="font-size: 20px; margin-right: 30px;">BMI
-                                            Pregestational (kg/m)</label></td>
-                                    <td><input type="text" id="BMI" name="BMI" placeholder=" Between [13.0-57.0]"
-                                            style="width: 200px;font-size: 15px;"></td>
-
-                                </tr>
-                                <tr>
-                                    <td class="lbl"><label for="birth" style="font-size: 20px;">Gestational Age at Birth
-                                            (week,day)</label></td>
-                                    <td><input type="text" id="birth" name="birth" placeholder=" Between [30-41,0-6] "
-                                            style="width: 200px;font-size: 15px;"></td>
-                                </tr>
-
-                                <tr>
-                                    <td class="lbl"><label for="dtype" style="font-size: 20px;">Type of Delivery</label>
+                                    <td class="lbl"><label for="fat" style="font-size: 18px;">Central Armellini Fat (mm)
+                                        </label></td>
+                                    <td><input type="text" id="fat" name="fat" placeholder=" Between [10.0-100.0]"
+                                            style="width: 200px;font-size: 15px;">
                                     </td>
-                                    <td><select id="dtype" name="dtype" style="font-size: 15px;">
-                                            <option value="0">Vaginal Birth</option>
-                                            <option value="1">Cesarian Section</option>
-                                        </select></td>
-                                <tr>
-                                    <td class="lbl"><label for="weight" style="font-size: 20px;">Chlid Birth Weight(g)</label>
-                                    </td>
-                                    <td><input type="text" id="weight" name="weight"
-                                            placeholder=" Between [1000.0-4700.0]"
-                                            style="width: 200px;font-size: 15px;"></td>
                                 </tr>
+                                <tr>
+                                    <td class="lbl"><label for="age" style="font-size: 18px;">Age</label></td>
+                                    <td><input type="text" id="age" name="age" placeholder=" Between [0-90]"
+                                            style="width: 200px;font-size: 15px;">
+                                    </td>
+                                </tr>
+                          
                             </table>
                         </div>
                         <br>
@@ -141,7 +82,7 @@
             necessary steps to mitigate the risks associated with GDM and ensure the well-being of both you and your
             baby. </h4>
         {% elif result_data['prediction'] == 'Low Risk' %}
-        <h2 style="color: yellow;">{{ result_data['prediction'] }}</h2>
+        <h2 style="color: green;">{{ result_data['prediction'] }}</h2>
         <h4 style="text-align: justify;">Great news! The prediction indicates a lower risk of gestational diabetes
             mellitus (GDM). However, it is still essential to maintain a healthy lifestyle, eat a balanced diet, and
             attend regular prenatal check-ups to continue promoting optimal health for you and your baby. Stay proactive

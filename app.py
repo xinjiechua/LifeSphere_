@@ -21,7 +21,7 @@ def create_app():
     # Load the scaler used for scaling the training data
     scaler1 = pickle.load(open('model/scalerM.pkl', 'rb'))
     scaler2 = pickle.load(open('model/scalerF.pkl', 'rb'))
-    scaler3 = pickle.load(open('model/scalerD.pkl', 'rb'))
+  
 
     # Add the loaded models and scaler to the app context
     app.config['MODEL1'] = model1
@@ -29,7 +29,7 @@ def create_app():
     app.config['MODEL3'] = model3
     app.config['SCALER1'] = scaler1
     app.config['SCALER2'] = scaler2
-    app.config['SCALER3'] = scaler3
+    
 
     return app
 # Helper - Extract current page name from request
@@ -210,28 +210,18 @@ def predict_model2():
 def predict_model3():
 
     try:
-        age = float(request.form['age'])
-        ethnic = int(request.form['ethnic'])
-        previous = int(request.form['previous'])
-        dbp = float(request.form['DBP'])
-        sbp = float(request.form['SBP'])
-        fat = float(request.form['fat'])
-        currAge = float(request.form['currAge'])
-        pregnancies = float(request.form['pregnancies'])
-        glucose = float(request.form['glucose'])
-        bmi = float(request.form['BMI'])
-        birth = float(request.form['birth'])
-        dtype = int(request.form['dtype'])
         weight = float(request.form['weight'])
+        bmi = float(request.form['BMI'])
+        glucose = float(request.form['glucose'])
+        fat = float(request.form['fat'])
+        age = float(request.form['age'])
         
-        input_data = [[age,ethnic,previous,dbp,sbp,fat, currAge,pregnancies,glucose, bmi, birth, dtype, weight]]
+        input_data = [[weight,bmi,glucose,fat,age]]
         
-        scaler3 = app.config['SCALER3'] 
-        scaled_data = scaler3.transform(input_data)
-        
+     
         # Perform prediction using the loaded ML model for Model 2
         model3 = app.config['MODEL3']
-        prediction = int(model3.predict(scaled_data))
+        prediction = int(model3.predict(input_data))
 
         # Map the prediction to a meaningful label
         pred_mapper = {0: 'Low Risk', 1: 'High Risk'}
@@ -241,19 +231,11 @@ def predict_model3():
         result_data = {
             'prediction': final_pred,
             'input_data': {
-                'Age': age,
-                'Ethnicity': ethnic,
-                'Previous Diabetes Mellitus': previous,
-                'Diastolic Blood Pressures': dbp,
-                'Systolic Blood Pressure': sbp,
-                'Central Armellini Fat (mm)': fat,
-                'Current Gestational Age': currAge,
-                'Pregancies(number)': pregnancies,
-                'First Fasting Glucose (mg/dl)': glucose,
+                'Chlid Birth Weight(g)': weight,
                 'BMI Pregestational (kg/m)': bmi,
-                'Gestational Age at Birth (week,day)': birth,
-                'Type of Delivery': dtype,
-                'Chlid Birth Weight(g)': weight
+                'First Fasting Glucose (mg/dl)': glucose,
+                'Central Armellini Fat (mm)': fat,
+                'Age': age
             }
         }
 

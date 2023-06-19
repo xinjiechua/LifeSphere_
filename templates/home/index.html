@@ -19,7 +19,7 @@
 
     .box {
         flex: 1 1 300px;
-        height:250px;
+        height: 250px;
         padding: 10px;
         border: 2px solid #78f9f9;
         border-radius: 10px;
@@ -33,19 +33,18 @@
     .box::-webkit-scrollbar {
         width: 6px;
     }
-    
+
     .box::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
-    
+
     .box::-webkit-scrollbar-thumb {
         background: #888;
     }
-    
+
     .box::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-    
 </style>{% endblock stylesheets %}
 
 {% block content %}
@@ -81,7 +80,8 @@
                 <div class="box">
                     <h3 style="font-size: 20px; margin-bottom: 20px;">User-Friendly Interface</h3>
                     <p style="text-align:justify;">Our website features a user-friendly interface that makes it easy for
-                        expecting mothers, healthcare professionals and other users to access and interpret the prediction outcomes.
+                        expecting mothers, healthcare professionals and other users to access and interpret the
+                        prediction outcomes.
                         The interface provides a seamless user experience.</p>
                 </div>
                 <div class="box">
@@ -89,6 +89,25 @@
                     <p style="text-align:justify;">Our website offers a wealth of educational resources to empower users
                         with valuable knowledge about fetal health and maternal well-being. In the Resources tab, you
                         can access a wide range of informative content to support your pregnancy journey. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11" style="margin-left: 45px;">
+            <div class="card card-chart">
+                <div class="card-header ">
+                    <div class="row">
+                        <div class="col-sm-10 text-left">
+                            <h2 class="card-title">Maternal Mortality Ratio in Malaysia from 2012 to 2021</h2>
+                            <h3 class="card-category" style="color:white;">(per 100,000 live births)</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="chartBig1"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,12 +120,103 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
 
 <script>
-    $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
 
+    $(document).ready(function () {
+        chartColor = "#FFFFFF";
+
+        gradientChartOptionsConfigurationWithTooltipPurple = {
+            maintainAspectRatio: false,
+            legend: {
+                display: false,
+            },
+
+            tooltips: {
+                backgroundColor: '#f5f5f5',
+                titleFontColor: '#333',
+                bodyFontColor: '#666',
+                bodySpacing: 4,
+                xPadding: 12,
+                mode: "nearest",
+                intersect: 0,
+                position: "nearest"
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    barPercentage: 1.6,
+                    gridLines: {
+                        drawBorder: false,
+                        color: 'rgba(29,140,248,0.0)',
+                        zeroLineColor: "transparent",
+                    },
+                    ticks: {
+                        suggestedMin: 60,
+                        suggestedMax: 125,
+                        padding: 20,
+                        fontColor: 'white'
+                    }
+                }],
+
+                xAxes: [{
+                    barPercentage: 1.6,
+                    gridLines: {
+                        drawBorder: false,
+                        color: 'rgba(225,78,202,0.1)',
+                        zeroLineColor: "transparent",
+                    },
+                    ticks: {
+                        padding: 20,
+                        fontColor: 'white'
+                    }
+                }]
+            }
+        };
+
+        var chart_labels = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'];
+        var chart_data = [23.2, 21.4, 22.3, 23.8, 29.1, 25, 23.5, 21.1, 24.9, 68.2];
+
+
+        var ctx = document.getElementById("chartBig1").getContext('2d');
+
+        var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke.addColorStop(1, 'rgba(72,72,176,0.1)');
+        gradientStroke.addColorStop(0.4, 'rgba(72,72,176,0.0)');
+        gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+        var config = {
+            type: 'line',
+            responsive:true,
+            data: {
+                labels: chart_labels,
+                datasets: [{
+                    label: 'maternal mortality ratio',
+                    fill: true,
+                    backgroundColor: gradientStroke,
+                    borderColor: '#d346b1',
+                    borderWidth: 2,
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    pointBackgroundColor: '#d346b1',
+                    pointBorderColor: 'rgba(255,255,255,0)',
+                    pointHoverBackgroundColor: '#d346b1',
+                    pointBorderWidth: 20,
+                    pointHoverRadius: 4,
+                    pointHoverBorderWidth: 15,
+                    pointRadius: 4,
+                    data: chart_data,
+                    tension: 0.4
+                }]
+            },
+            options: gradientChartOptionsConfigurationWithTooltipPurple
+        };
+        var myChart = new Chart(ctx, config);
     });
 </script>
 
